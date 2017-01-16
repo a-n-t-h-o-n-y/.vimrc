@@ -1,0 +1,13 @@
+#/*
+#!/init.vim
+#!/.gitignore
+#!/autoload/
+#!/plugged/
+
+/.netrwhist
+
+/plugged/*
+!/plugged/youcompleteme/
+
+/plugged/youcompleteme/*
+!/plugged/youcompleteme/.ycm_extra_conf.py
