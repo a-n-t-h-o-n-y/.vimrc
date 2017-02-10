@@ -74,6 +74,8 @@ let g:airline_theme='lucius'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_c = '%t'
+let g:airline_section_y = ''
+let g:airline_section_x = '' 
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
