@@ -12,6 +12,9 @@ set shiftwidth=4
 set autoindent
 set smartindent
 set colorcolumn=80
+set wrap
+set textwidth=80
+set formatoptions+=t
 set ruler
 set so=7
 set lazyredraw
@@ -19,7 +22,6 @@ set autoread
 set softtabstop=4   " Space count for tab key in INSERT mode
 set smarttab        " When off, <Tab> will not inserts spaces in front of a line
 cd ~/Documents/C++/
-set wrap
 set linebreak
 
 " Tabs converted to spaces for Indent plugin
