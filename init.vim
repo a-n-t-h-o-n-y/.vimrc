@@ -50,7 +50,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
 Plug 'raimondi/delimitmate'
 Plug 'romainl/flattened'
-Plug 'terryma/vim-smooth-scroll'
+Plug 'yonchu/accelerated-smooth-scroll'
 
 " Plug 'scrooloose/syntastic'
 " Plug 'tpope/vim-fugitive'
@@ -129,12 +129,6 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
-
-" Smooth Scroll Config
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " NERD Commenter Config
 " Add spaces after comment delimiters by default
