@@ -58,6 +58,9 @@ Plug 'terryma/vim-smooth-scroll'
 " Plug 'tpope/vim-commentary'
 call plug#end()
 
+" Save shortcut
+noremap <Leader>s :update<CR>
+
 colorscheme flattened_light
 set background=light
 
@@ -71,7 +74,7 @@ nnoremap <S-Tab> :bprevious<CR>
 
 " Open/reload .vimrc
 nnoremap <leader>ev :edit $MYVIMRC<CR>  
-nnoremap <leader>sv :source $MYVIMRC<CR>     
+nnoremap <leader>v :source $MYVIMRC<CR>     
 
 " Airline Config
 " set statusline=%{fugitive#statusline()}
