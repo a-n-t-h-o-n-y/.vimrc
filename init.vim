@@ -61,6 +61,9 @@ call plug#end()
 " Save shortcut
 noremap <Leader>s :update<CR>
 
+" Esc shortcut
+:inoremap jk <Esc>
+
 colorscheme flattened_light
 set background=light
 
