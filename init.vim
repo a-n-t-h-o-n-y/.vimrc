@@ -25,6 +25,8 @@ cd ~/Documents/C++/
 set linebreak
 set completeopt-=preview
 set expandtab " Tabs converted to spaces for Indent plugin
+set guicursor= " neovim update 4/2/17 removed $NVIM_TUI_ENABLE_CURSOR_SHAPE
+set mouse=a
 
 " Font 'Noto Mono for Powerline' size 14
 
