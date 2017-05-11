@@ -144,7 +144,7 @@ let g:NERDDefaultAlign = 'left'
 " Neomake Config
 " autocmd! BufWritePost * Neomake
 let g:neomake_cpp_enabled_makers =  ['clangtidy']
-let g:neomake_cpp_clangtidy_args = ['-checks=*', '-header-filter=.*',
+let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order', '-header-filter=.*',
             \ '-extra-arg=-std=c++14']
 
 " Auto Commenting turned off
