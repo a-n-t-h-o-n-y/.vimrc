@@ -53,6 +53,7 @@ Plug 'majutsushi/tagbar'
 Plug 'raimondi/delimitmate'
 Plug 'romainl/flattened'
 Plug 'yonchu/accelerated-smooth-scroll'
+Plug 'qpkorr/vim-bufkill'
 
 " Plug 'scrooloose/syntastic'
 " Plug 'tpope/vim-fugitive'
