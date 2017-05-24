@@ -1,32 +1,38 @@
 scriptencoding utf-8
 let encoding='utf-8'
-filetype on
 set nocompatible
 syntax enable " Turn on syntax highlighting
-set hidden " Leave hidden buffers open  
+filetype on
+set hidden
+set ignorecase
 set history=100
-set number
 set updatetime=250
-set tabstop=4
-set shiftwidth=4
-set autoindent
-set smartindent
-set colorcolumn=80
+set sessionoptions="blank,buffers,sesdir,folds,help,tabpages,winsize"
+
 set wrap
+set number
 set textwidth=80
+set colorcolumn=80
 set formatoptions+=t
 set ruler
-set so=7
+set scrolloff=6
 set lazyredraw
 set autoread
-set softtabstop=4   " Space count for tab key in INSERT mode
-set smarttab        " When off, <Tab> will not inserts spaces in front of a line
-cd ~/Documents/C++/
 set linebreak
 set completeopt-=preview
-set expandtab " Tabs converted to spaces for Indent plugin
-set guicursor= " neovim update 4/2/17 removed $NVIM_TUI_ENABLE_CURSOR_SHAPE
+set guicursor= 
 set mouse=a
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab " Tabs as spaces
+set autoindent
+set cindent
+
+set wildmenu
+set wildmode=list:longest,full
+set wildcharm=<Tab>
 
 " Font 'Noto Mono for Powerline' size 14
 
@@ -36,7 +42,6 @@ set mouse=a
 " Install plugins with :PlugInstall
 
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
 Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
@@ -46,57 +51,89 @@ Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-obsession'
 Plug 'airblade/vim-gitgutter'
-Plug 'critiqjo/lldb.nvim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'easymotion/vim-easymotion'
-Plug 'majutsushi/tagbar'
 Plug 'raimondi/delimitmate'
 Plug 'romainl/flattened'
 Plug 'yonchu/accelerated-smooth-scroll'
-Plug 'qpkorr/vim-bufkill'
+Plug 'moll/vim-bbye'
 
 " Plug 'scrooloose/syntastic'
 " Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-commentary'
 call plug#end()
-
-" Save shortcut
-noremap <Leader>s :update<CR>
-
-" Esc shortcut
-:inoremap jk <Esc>
 
 colorscheme flattened_light
 set background=light
 
+" Exit insert mode on nvim terminal
+tnoremap jk <C-\><C-n>
+
+" Tag search
+nnoremap <Leader>t :tselect /
+nnoremap <c-]> g<c-]>
+vnoremap <c-]> g<c-]>
+nnoremap g<c-]> <c-]>
+vnoremap g<c-]> <c-]>
+
+" Save shortcut
+nnoremap <Leader>u :update<CR>
+nnoremap <Leader>s :ClangFormat<CR>:update<CR>
+
+" Esc shortcut
+inoremap jk <Esc>
+
 " Bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" Search and replace under selection
+vnoremap <Leader>r :s/
+
+" Search and replace entire buffer
+nnoremap <Leader>r :%s/
+
 " Buffer Management
-nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nmap <Leader>d :ls<CR>:bd 
 
 " Open/reload .vimrc
 nnoremap <leader>ev :edit $MYVIMRC<CR>  
 nnoremap <leader>v :source $MYVIMRC<CR>     
 
+" Location List
+nnoremap <leader>ll :call LocationListToggle()<cr>
+let g:locationlist_is_open = 0
+function! LocationListToggle()
+    if g:locationlist_is_open
+        lclose
+        let g:locationlist_is_open = 0
+        execute g:locationlist_return_to_window . "wincmd w"
+    else
+        let g:locationlist_return_to_window = winnr()
+        lopen
+        let g:locationlist_is_open = 1
+    endif
+endfunction
+
+" Quickfix
+nnoremap <leader>qf :call QuickfixToggle()<cr>
+let g:quickfix_is_open = 0
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+
 " Airline Config
-" set statusline=%{fugitive#statusline()}
 set statusline+=%#warningmsg#
 let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_c = '%t'
 let g:airline_section_y = ''
 let g:airline_section_x = '' 
 let g:airline_powerline_fonts = 1
-
-" Tagbar Config
-nmap <silent> <leader>tb :TagbarToggle<CR>
-let g:tagbar_autoclose = 0
-let g:tagbar_compact = 1
 
 " YouCompleteMe Config
 let g:ycm_global_ycm_extra_conf =
@@ -107,16 +144,7 @@ let g:ycm_server_python_interpreter = '/usr/bin/python2'
 
 " CtrlP Config
 let g:ctrlp_dotfiles = 1
-
-" NERDTree Config
-nnoremap <leader>nt :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>f :NERDTreeFind<CR>
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeShowHidden=1
-let NERDTreeHijackNetrw=1
+nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " GitGutter Config
 let g:gitgutter_realtime = 1
@@ -127,12 +155,6 @@ let g:clang_format#style_options = { "Standard" : "C++11" }
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
-" Easy Motion Config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-
 " NERD Commenter Config
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -142,11 +164,12 @@ let g:NERDCompactSexyComs = 1
 " instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" Neomake Config
-" autocmd! BufWritePost * Neomake
+" Neomake Config - Clang Tidy
+nnoremap <Leader>nm :Neomake<CR>
 let g:neomake_cpp_enabled_makers =  ['clangtidy']
-let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order', '-header-filter=.*',
-            \ '-extra-arg=-std=c++14']
+let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
+            \-google-readability-todo', '-header-filter=.*',
+            \'-extra-arg=-std=c++14']
 
 " Auto Commenting turned off
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
@@ -160,11 +183,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" LLDB maps
-nnoremap <F8> :LL step<CR>
-nnoremap <F9> :LL next<CR>
-nnoremap <F7> <Plug>LLBreakSwitch
 
 " Syntastic Config
 " let g:syntastic_cpp_checkers = ['clang_tidy'] 
@@ -181,4 +199,3 @@ nnoremap <F7> <Plug>LLBreakSwitch
 " let g:syntastic_check_on_w = 0
 
 " nnoremap <leader>sc :SyntasticCheck<CR>
-
