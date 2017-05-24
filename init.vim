@@ -74,9 +74,15 @@ vnoremap <c-]> g<c-]>
 nnoremap g<c-]> <c-]>
 vnoremap g<c-]> <c-]>
 
+" Window Movement
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
 " Save shortcut
-nnoremap <Leader>u :update<CR>
-nnoremap <Leader>s :ClangFormat<CR>:update<CR>
+nnoremap <Leader>s :update<CR>
+nnoremap <Leader>fs :ClangFormat<CR>:update<CR>
 
 " Esc shortcut
 inoremap jk <Esc>
@@ -91,7 +97,7 @@ vnoremap <Leader>r :s/
 nnoremap <Leader>r :%s/
 
 " Buffer Management
-nmap <Leader>d :ls<CR>:bd 
+nmap <Leader>d :ls<CR>:Bd 
 
 " Open/reload .vimrc
 nnoremap <leader>ev :edit $MYVIMRC<CR>  
