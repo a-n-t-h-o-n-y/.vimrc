@@ -28,7 +28,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab " Tabs as spaces
 set autoindent
-set cindent
+set smartindent
 
 set wildmenu
 set wildmode=list:longest,full
@@ -82,7 +82,7 @@ nnoremap <c-l> <c-w>l
 
 " Save shortcut
 nnoremap <Leader>s :update<CR>
-nnoremap <Leader>fs :ClangFormat<CR>:update<CR>
+nnoremap <Leader>fs :ClangFormat<CR>:update<CR>zz
 
 " Esc shortcut
 inoremap jk <Esc>
@@ -134,7 +134,7 @@ function! QuickfixToggle()
 endfunction
 
 " Airline Config
-set statusline+=%#warningmsg#
+" set statusline+=%#warningmsg#
 let g:airline_theme='solarized'
 let g:airline_section_c = '%t'
 let g:airline_section_y = ''
@@ -146,7 +146,7 @@ let g:ycm_global_ycm_extra_conf =
     \ '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 " CtrlP Config
 let g:ctrlp_dotfiles = 1
@@ -158,7 +158,7 @@ let g:gitgutter_realtime = 1
 " Clang Format Config
 let g:clang_format#code_style = 'Chromium'
 let g:clang_format#style_options = { "Standard" : "C++11" }
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>zz
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
 " NERD Commenter Config
@@ -174,8 +174,8 @@ let g:NERDDefaultAlign = 'left'
 nnoremap <Leader>nm :Neomake<CR>
 let g:neomake_cpp_enabled_makers =  ['clangtidy']
 let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
-            \-google-readability-todo', '-header-filter=.*',
-            \'-extra-arg=-std=c++14']
+            \-google-runtime-references', '-extra-arg=-std=c++14',
+            \'-header-filter=.*']
 
 " Auto Commenting turned off
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
