@@ -74,11 +74,11 @@ call plug#end()
 colorscheme seoul256-light
 set background=light
 
+" :make directory
+let &makeprg='make -C ./build/'
+
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
-
-" Change directory to current file
-autocmd BufEnter * silent! lcd %:p:h
 
 " Tag search
 nnoremap <Leader>t :tselect /
@@ -112,11 +112,11 @@ nnoremap <Leader>r :%s/
 " Buffer Management
 nmap <Leader>d :ls<CR>:Bd 
 
-" Open/reload .vimrc
+" Open/Reload .vimrc
 nnoremap <leader>ev :edit $MYVIMRC<CR>  
 nnoremap <leader>v :source $MYVIMRC<CR>     
 
-" Location List
+" Open/Close Location List
 nnoremap <leader>ll :call LocationListToggle()<cr>
 let g:locationlist_is_open = 0
 function! LocationListToggle()
@@ -131,7 +131,7 @@ function! LocationListToggle()
     endif
 endfunction
 
-" Quickfix
+" Open/Close Quickfix
 nnoremap <leader>qf :call QuickfixToggle()<cr>
 let g:quickfix_is_open = 0
 function! QuickfixToggle()
@@ -147,7 +147,6 @@ function! QuickfixToggle()
 endfunction
 
 " Airline Config
-" set statusline+=%#warningmsg#
 let g:airline_theme='solarized'
 let g:airline_section_c = '%t'
 let g:airline_section_y = ''
@@ -159,7 +158,7 @@ let g:ycm_global_ycm_extra_conf =
     \ '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+" let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 " CtrlP Config
 let g:ctrlp_dotfiles = 1
@@ -196,18 +195,18 @@ let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
             \-google-runtime-references', '-extra-arg=-std=c++14',
             \'-header-filter=.*']
 
-" Auto Commenting turned off
-autocmd FileType * setlocal formatoptions-=r formatoptions-=o
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " Use ag in CtrlP for listing files. Remove -a to respect .gitignore
+  let g:ctrlp_user_command = 'ag %s -l -a --nocolor -g ""'
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" Auto Commenting turned off
+autocmd FileType * setlocal formatoptions-=r formatoptions-=o
 
 " Syntastic Config
 " let g:syntastic_cpp_checkers = ['clang_tidy'] 
