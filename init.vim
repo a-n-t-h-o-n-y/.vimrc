@@ -13,7 +13,9 @@ set wrap
 set number
 set textwidth=80
 set colorcolumn=80
+let &colorcolumn=join(range(81,999),",")
 set formatoptions+=t
+set number relativenumber
 set ruler
 set scrolloff=6
 set lazyredraw
@@ -22,6 +24,7 @@ set linebreak
 set completeopt-=preview
 set guicursor= 
 set mouse=a
+set cursorline
 
 set tabstop=4
 set softtabstop=4
@@ -33,6 +36,10 @@ set smartindent
 set wildmenu
 set wildmode=list:longest,full
 set wildcharm=<Tab>
+
+" Folding
+set foldmethod=syntax
+set nofoldenable
 
 " Font 'Noto Mono for Powerline' size 14
 
@@ -49,6 +56,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/vim-clang-format'
 Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-obsession'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
@@ -56,16 +65,20 @@ Plug 'raimondi/delimitmate'
 Plug 'romainl/flattened'
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'moll/vim-bbye'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Plug 'scrooloose/syntastic'
 " Plug 'tpope/vim-fugitive'
 call plug#end()
 
-colorscheme flattened_light
+colorscheme seoul256-light
 set background=light
 
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
+
+" Change directory to current file
+autocmd BufEnter * silent! lcd %:p:h
 
 " Tag search
 nnoremap <Leader>t :tselect /
@@ -160,6 +173,12 @@ let g:clang_format#code_style = 'Chromium'
 let g:clang_format#style_options = { "Standard" : "C++11" }
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>zz
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+" Goyo/Limelight Config
+let g:goyo_linenr=1
+let g:goyo_height = '100%'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 " NERD Commenter Config
 " Add spaces after comment delimiters by default
