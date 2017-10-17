@@ -58,17 +58,15 @@ Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'romainl/flattened'
-" Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'moll/vim-bbye'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Plug 'scrooloose/syntastic'
-" Plug 'tpope/vim-fugitive'
 call plug#end()
 
 colorscheme seoul256-light
