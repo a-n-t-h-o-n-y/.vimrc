@@ -156,7 +156,7 @@ let g:ycm_global_ycm_extra_conf =
     \ '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 " CtrlP Config
 let g:ctrlp_dotfiles = 1
@@ -190,7 +190,7 @@ let g:NERDDefaultAlign = 'left'
 nnoremap <Leader>nm :Neomake<CR>
 let g:neomake_cpp_enabled_makers =  ['clangtidy']
 let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
-            \-google-runtime-references', '-extra-arg=-std=c++14',
+            \-google-runtime-references,-llvm-header-guard', '-extra-arg=-std=c++14',
             \'-header-filter=.*']
 
 " The Silver Searcher
