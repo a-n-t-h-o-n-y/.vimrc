@@ -25,6 +25,7 @@ set completeopt-=preview
 set guicursor= 
 set mouse=a
 set cursorline
+set noic
 
 set tabstop=4
 set softtabstop=4
@@ -54,6 +55,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/vim-clang-format'
+Plug 'Chiel92/vim-autoformat'
 Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
@@ -93,7 +95,7 @@ nnoremap <c-l> <c-w>l
 
 " Save shortcut
 nnoremap <Leader>s :update<CR>
-nnoremap <Leader>fs :ClangFormat<CR>:update<CR>zz
+nnoremap <Leader>fs :ClangFormat<CR>:update<CR>
 
 " Esc shortcut
 inoremap jk <Esc>
@@ -168,8 +170,13 @@ let g:gitgutter_realtime = 1
 " Clang Format Config
 let g:clang_format#code_style = 'Chromium'
 let g:clang_format#style_options = { "Standard" : "C++11" }
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>zz
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+" Autoformat(Python)
+autocmd FileType python nnoremap <buffer><Leader>f :Autoformat<CR>
+autocmd FileType python vnoremap <buffer><Leader>f :Autoformat<CR>
+let g:formatter_yapf_style = 'chromium'
 
 " Goyo/Limelight Config
 let g:goyo_linenr=1
