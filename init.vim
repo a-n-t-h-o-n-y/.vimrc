@@ -67,6 +67,7 @@ Plug 'raimondi/delimitmate'
 Plug 'romainl/flattened'
 Plug 'moll/vim-bbye'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'majutsushi/tagbar'
 
 " Plug 'scrooloose/syntastic'
 call plug#end()
@@ -79,6 +80,9 @@ let &makeprg='make -C ./build/'
 
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
+
+" Tagbar
+nmap <leader>tb :TagbarToggle<CR>
 
 " Tag search
 nnoremap <Leader>t :tselect /
