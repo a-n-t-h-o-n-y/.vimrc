@@ -25,6 +25,7 @@ set completeopt-=preview
 set guicursor= 
 set mouse=a
 set cursorline
+set cursorcolumn
 set noic
 
 set tabstop=4
