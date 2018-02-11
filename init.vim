@@ -86,11 +86,7 @@ tnoremap jk <C-\><C-n>
 nmap <leader>tb :TagbarToggle<CR>
 
 " Tag search
-nnoremap <Leader>t :tselect /
-nnoremap <c-]> g<c-]>
-vnoremap <c-]> g<c-]>
-nnoremap g<c-]> <c-]>
-vnoremap g<c-]> <c-]>
+nmap <c-[> :CtrlPTag<CR><C-\>w
 
 " Window Movement
 nnoremap <c-h> <c-w>h
@@ -100,7 +96,6 @@ nnoremap <c-l> <c-w>l
 
 " Save shortcut
 nnoremap <Leader>s :update<CR>
-nnoremap <Leader>fs :ClangFormat<CR>:update<CR>
 
 " Esc shortcut
 inoremap jk <Esc>
