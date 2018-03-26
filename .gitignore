@@ -1,9 +1,5 @@
-/.netrwhist
-
-/plugged/*
-!/plugged/youcompleteme/
-
-/plugged/youcompleteme/*
+*
+!.gitignore
+!init.vim
 !/plugged/youcompleteme/.ycm_extra_conf.py
-
-autoload/plug.vim*
+!/colors/*

@@ -9,6 +9,7 @@ set history=100
 set updatetime=250
 set sessionoptions="blank,buffers,sesdir,folds,help,tabpages,winsize"
 
+set nofoldenable
 set wrap
 set number
 set textwidth=80
@@ -73,7 +74,7 @@ Plug 'majutsushi/tagbar'
 " Plug 'scrooloose/syntastic'
 call plug#end()
 
-colorscheme seoul256-light
+colorscheme flattened_light
 set background=light
 
 " :make directory
