@@ -5,3 +5,5 @@
 
 /plugged/youcompleteme/*
 !/plugged/youcompleteme/.ycm_extra_conf.py
+
+autoload/plug.vim*
