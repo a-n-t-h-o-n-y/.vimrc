@@ -198,7 +198,8 @@ let g:NERDDefaultAlign = 'left'
 nnoremap <Leader>nm :Neomake<CR>
 let g:neomake_cpp_enabled_makers =  ['clangtidy']
 let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
-            \-google-runtime-references,-llvm-header-guard', '-extra-arg=-std=c++14',
+            \-google-runtime-references,-llvm-header-guard,
+            \-fuchsia-default-arguments', '-extra-arg=-std=c++14',
             \'-header-filter=.*']
 
 " The Silver Searcher
