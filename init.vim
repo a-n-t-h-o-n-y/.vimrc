@@ -86,9 +86,6 @@ tnoremap jk <C-\><C-n>
 " Tagbar
 nmap <leader>tb :TagbarToggle<CR>
 
-" Tag search
-nmap <c-[> :CtrlPTag<CR><C-\>w
-
 " Window Movement
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
