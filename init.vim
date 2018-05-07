@@ -77,9 +77,6 @@ call plug#end()
 colorscheme flattened_light
 set background=light
 
-" :make directory
-let &makeprg='make -C ./build/'
-
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
 
