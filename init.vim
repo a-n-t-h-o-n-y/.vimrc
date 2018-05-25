@@ -26,7 +26,7 @@ set completeopt-=preview
 set guicursor= 
 set mouse=a
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 set noic
 
 set tabstop=4
@@ -70,6 +70,7 @@ Plug 'romainl/flattened'
 Plug 'moll/vim-bbye'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 
 " Plug 'scrooloose/syntastic'
 call plug#end()
