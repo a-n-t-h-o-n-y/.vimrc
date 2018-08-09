@@ -1,8 +1,8 @@
 scriptencoding utf-8
 let encoding='utf-8'
 set nocompatible
-syntax enable " Turn on syntax highlighting
-filetype on
+syntax on " Turn on syntax highlighting
+filetype plugin on
 set hidden
 set ignorecase
 set history=100
@@ -71,8 +71,13 @@ Plug 'moll/vim-bbye'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'iamcco/markdown-preview.vim'
 
-" Plug 'scrooloose/syntastic'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-clang'
 call plug#end()
 
 colorscheme flattened_light
@@ -80,6 +85,9 @@ set background=light
 
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
+
+" Insert Date
+nnoremap <F5> "=strftime("%b %d, %Y")<CR>P
 
 " Tagbar
 nmap <leader>tb :TagbarToggle<CR>
@@ -156,6 +164,12 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
+" Deoplete Config
+" let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+" let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+" let g:deoplete#enable_at_startup = 1
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " CtrlP Config
 let g:ctrlp_dotfiles = 1
 nnoremap <Leader>b :CtrlPBuffer<CR>
@@ -209,6 +223,13 @@ endif
 
 " Auto Commenting turned off
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+
+" VimWiki
+let wiki_1 = {}
+let wiki_1.path = '~/vimwiki/'
+let wiki_1.syntax = 'markdown'
+let wiki_1.ext = '.md'
+let g:vimwiki_list = [wiki_1]
 
 " Syntastic Config
 " let g:syntastic_cpp_checkers = ['clang_tidy'] 
