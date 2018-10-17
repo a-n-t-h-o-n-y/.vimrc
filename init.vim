@@ -9,6 +9,8 @@ set history=100
 set updatetime=250
 set sessionoptions="blank,buffers,sesdir,folds,help,tabpages,winsize"
 
+set makeprg=clang++\ -std=c++17\ %\ -lstdc++fs\ &&\ ./a.out
+
 set nofoldenable
 set wrap
 set number
@@ -44,11 +46,12 @@ set wildcharm=<Tab>
 set foldmethod=syntax
 set nofoldenable
 
-" Font 'Noto Mono for Powerline' size 14
+" Font Noto Mono size 14 or Fira Code size 12
 
 " Install vim-plug with:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 " Install plugins with :PlugInstall
 
 call plug#begin('~/.vim/plugged')
@@ -60,13 +63,13 @@ Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
 Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'romainl/flattened'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
-Plug 'romainl/flattened'
 Plug 'moll/vim-bbye'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'majutsushi/tagbar'
@@ -75,9 +78,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'iamcco/markdown-preview.vim'
-
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-clang'
 call plug#end()
 
 colorscheme flattened_light
@@ -158,17 +158,11 @@ let g:airline_section_x = ''
 let g:airline_powerline_fonts = 1
 
 " YouCompleteMe Config
-let g:ycm_global_ycm_extra_conf =
-    \ '~/.vim/plugged/youcompleteme/.ycm_extra_conf.py'
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
-
-" Deoplete Config
-" let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-" let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-" let g:deoplete#enable_at_startup = 1
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" let g:ycm_add_preview_to_completeopt = 1
+" set completeopt=longest,menuone
 
 " CtrlP Config
 let g:ctrlp_dotfiles = 1
@@ -187,6 +181,13 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType python nnoremap <buffer><Leader>f :Autoformat<CR>
 autocmd FileType python vnoremap <buffer><Leader>f :Autoformat<CR>
 let g:formatter_yapf_style = 'chromium'
+
+" Enhanced Highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
 
 " Goyo/Limelight Config
 let g:goyo_linenr=1
