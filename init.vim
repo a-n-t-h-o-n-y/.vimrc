@@ -9,9 +9,8 @@ set history=100
 set updatetime=250
 set sessionoptions="blank,buffers,sesdir,folds,help,tabpages,winsize"
 
-set makeprg=clang++\ -std=c++17\ %\ -lstdc++fs\ &&\ ./a.out
+set makeprg=clang++\ -std=c++17\ %\ &&\ ./a.out
 
-set nofoldenable
 set wrap
 set number
 set textwidth=80
@@ -78,6 +77,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'mbbill/undotree'
 call plug#end()
 
 colorscheme flattened_light
@@ -170,6 +170,9 @@ nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " GitGutter Config
 let g:gitgutter_realtime = 1
+
+" Undotree Config
+nnoremap <Leader>u :UndotreeToggle<cr>
 
 " Clang Format Config
 let g:clang_format#code_style = 'Chromium'
