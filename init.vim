@@ -173,6 +173,8 @@ let g:gitgutter_realtime = 1
 
 " Undotree Config
 nnoremap <Leader>u :UndotreeToggle<cr>
+let g:undotree_DiffAutoOpen = 0
+autocmd VimEnter * UndotreeToggle
 
 " Clang Format Config
 let g:clang_format#code_style = 'Chromium'
