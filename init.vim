@@ -46,11 +46,9 @@ set foldmethod=syntax
 set nofoldenable
 
 " Font Noto Mono size 14 or Fira Code size 12
-
 " Install vim-plug with:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 " Install plugins with :PlugInstall
 
 call plug#begin('~/.vim/plugged')
@@ -65,19 +63,17 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'romainl/flattened'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
-Plug 'moll/vim-bbye'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'majutsushi/tagbar'
-Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'mbbill/undotree'
+Plug 'milkypostman/vim-togglelist'
 call plug#end()
 
 colorscheme flattened_light
@@ -113,42 +109,9 @@ vnoremap <Leader>r :s/
 " Search and replace entire buffer
 nnoremap <Leader>r :%s/
 
-" Buffer Management
-nmap <Leader>d :ls<CR>:Bd 
-
 " Open/Reload .vimrc
 nnoremap <leader>ev :edit $MYVIMRC<CR>  
 nnoremap <leader>v :source $MYVIMRC<CR>     
-
-" Open/Close Location List
-nnoremap <leader>ll :call LocationListToggle()<cr>
-let g:locationlist_is_open = 0
-function! LocationListToggle()
-    if g:locationlist_is_open
-        lclose
-        let g:locationlist_is_open = 0
-        execute g:locationlist_return_to_window . "wincmd w"
-    else
-        let g:locationlist_return_to_window = winnr()
-        lopen
-        let g:locationlist_is_open = 1
-    endif
-endfunction
-
-" Open/Close Quickfix
-nnoremap <leader>qf :call QuickfixToggle()<cr>
-let g:quickfix_is_open = 0
-function! QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen
-        let g:quickfix_is_open = 1
-    endif
-endfunction
 
 " Airline Config
 let g:airline_theme='solarized'
