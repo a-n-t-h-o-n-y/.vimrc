@@ -54,7 +54,6 @@ set nofoldenable
 call plug#begin('~/.vim/plugged')
 Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-airline/vim-airline'
 Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
 Plug 'benekastah/neomake'
@@ -75,7 +74,7 @@ call plug#end()
 
 
 set termguicolors
-colorscheme brushtrees
+colorscheme one-light
 set background=light
 
 " Exit insert mode on nvim terminal
@@ -116,12 +115,6 @@ nnoremap <leader>v :source $MYVIMRC<CR>
 set list
 let &listchars = "tab:\u2192 ,extends:>,precedes:<,eol:\u00ac,trail:\u00b7"
 let &showbreak = '>'
-
-" Airline Config
-let g:airline_section_c = '%t'
-let g:airline_section_y = ''
-let g:airline_section_x = '' 
-let g:airline_powerline_fonts = 1
 
 " YouCompleteMe Config
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
