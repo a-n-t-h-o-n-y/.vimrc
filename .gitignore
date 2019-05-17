@@ -1,6 +1,7 @@
 *
+!*/
 !.gitignore
 !init.vim
 !.ycm_extra_conf.py
-!/colors/*
-tags
+!colors/*
+plugged/

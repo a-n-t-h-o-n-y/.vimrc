@@ -55,28 +55,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
 Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'romainl/flattened'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
-Plug 'vimwiki/vimwiki'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'mbbill/undotree'
 Plug 'milkypostman/vim-togglelist'
+" Plug 'vimwiki/vimwiki'
 call plug#end()
 
-colorscheme flattened_light
+
+set termguicolors
+colorscheme brushtrees
 set background=light
 
 " Exit insert mode on nvim terminal
@@ -110,11 +109,15 @@ vnoremap <Leader>r :s/
 nnoremap <Leader>r :%s/
 
 " Open/Reload .vimrc
-nnoremap <leader>ev :edit $MYVIMRC<CR>  
-nnoremap <leader>v :source $MYVIMRC<CR>     
+nnoremap <leader>ev :edit $MYVIMRC<CR>
+nnoremap <leader>v :source $MYVIMRC<CR>
+
+" Invisible Characters
+set list
+let &listchars = "tab:\u2192 ,extends:>,precedes:<,eol:\u00ac,trail:\u00b7"
+let &showbreak = '>'
 
 " Airline Config
-let g:airline_theme='solarized'
 let g:airline_section_c = '%t'
 let g:airline_section_y = ''
 let g:airline_section_x = '' 
