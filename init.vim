@@ -57,22 +57,26 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
 Plug 'benekastah/neomake'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-fugitive'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'iamcco/markdown-preview.vim'
 Plug 'mbbill/undotree'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'milkypostman/vim-togglelist'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-fugitive'
+Plug 'iamcco/markdown-preview.vim'
 " Plug 'vimwiki/vimwiki'
 call plug#end()
 
+" Vertical Split Thin Line
+autocmd! ColorScheme * hi VertSplit cterm=NONE ctermbg=NONE ctermfg=247
+autocmd! ColorScheme * hi VertSplit gui=NONE   guibg=NONE   guifg=247
 
+" Terminal Colors
 set termguicolors
 colorscheme one-light
 set background=light
@@ -113,7 +117,7 @@ nnoremap <leader>v :source $MYVIMRC<CR>
 
 " Invisible Characters
 set list
-let &listchars = "tab:\u2192 ,extends:>,precedes:<,eol:\u00ac,trail:\u00b7"
+let &listchars = "tab:\u2192 ,extends:>,precedes:<,trail:\u00b7" " ,eol:\u00ac
 let &showbreak = '>'
 
 " YouCompleteMe Config
@@ -133,7 +137,7 @@ let g:gitgutter_realtime = 1
 " Undotree Config
 nnoremap <Leader>u :UndotreeToggle<cr>
 let g:undotree_DiffAutoOpen = 0
-autocmd VimEnter * UndotreeToggle
+" autocmd VimEnter * UndotreeToggle
 
 " Clang Format Config
 let g:clang_format#code_style = 'Chromium'
@@ -154,7 +158,7 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 
 " Goyo/Limelight Config
-let g:goyo_linenr=1
+" let g:goyo_linenr=1
 let g:goyo_height = '100%'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
@@ -162,8 +166,10 @@ autocmd! User GoyoLeave Limelight!
 " NERD Commenter Config
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+
 " Align line-wise comment delimiters flush left
 " instead of following code indentation
 let g:NERDDefaultAlign = 'left'
@@ -188,26 +194,3 @@ endif
 
 " Auto Commenting turned off
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
-
-" VimWiki
-let wiki_1 = {}
-let wiki_1.path = '~/vimwiki/'
-let wiki_1.syntax = 'markdown'
-let wiki_1.ext = '.md'
-let g:vimwiki_list = [wiki_1]
-
-" Syntastic Config
-" let g:syntastic_cpp_checkers = ['clang_tidy'] 
-" let g:syntastic_cpp_check_header = 1
-" let g:syntastic_cpp_auto_refresh_includes = 1
-" let g:syntastic_cpp_clang_tidy_args = '-checks=*'
-" -header_filter=\".*\\.\\(hpp\\|hxx\\|h\\)\"'
-" let g:syntastic_cpp_clang_tidy_post_args = ""
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_check_on_w = 0
-
-" nnoremap <leader>sc :SyntasticCheck<CR>
