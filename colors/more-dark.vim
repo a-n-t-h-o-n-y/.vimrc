@@ -9,7 +9,7 @@ set background=dark
 if exists("syntax_on")
   syntax reset
 endif
-let g:colors_name = "more"
+let g:colors_name = "more-dark"
 
 "i Comment        term=bold cterm=bold ctermfg=0 gui=none guifg=DarkGray
 hi clear Comment

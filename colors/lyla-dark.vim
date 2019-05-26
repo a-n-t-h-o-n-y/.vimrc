@@ -9,7 +9,7 @@ if version > 580
 endif
 
 set t_Co=256
-let g:colors_name = "lyla"
+let g:colors_name = "lyla-dark"
 
 hi Normal           guifg=#ffffff   guibg=#191a21   guisp=#191a21   gui=NONE        ctermfg=15      ctermbg=234     cterm=NONE
 

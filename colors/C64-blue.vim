@@ -12,7 +12,7 @@ highlight clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="C64"
+let g:colors_name="C64-blue"
 
 " Commodore 64 colors (using the "wanja" palette)
 "

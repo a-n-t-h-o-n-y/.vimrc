@@ -145,7 +145,7 @@ endif
 " Theme setup
 hi clear
 syntax reset
-let g:colors_name = "cupertino"
+let g:colors_name = "cupertino-light"
 
 " Highlighting function
 " Optional variables are attributes and guisp

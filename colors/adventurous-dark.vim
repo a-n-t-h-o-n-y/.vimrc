@@ -51,7 +51,7 @@ endif
 
 set background=dark
 
-let colors_name = 'adventurous'
+let colors_name = 'adventurous-dark'
 
 if &t_Co >= 256 || has('gui_running')
     hi Normal            ctermbg=16   ctermfg=152 guibg=#191B1F guifg=#BFD7DB cterm=NONE gui=NONE

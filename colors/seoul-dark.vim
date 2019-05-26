@@ -155,7 +155,7 @@ endif
 
 if !exists('s:style')
   " 2. If g:colors_name is NOT 'seoul256' -> dark version
-  if s:colors_name != 'seoul256'
+  if s:colors_name != 'seoul-dark'
     let s:style = 'dark'
   " 3. Follow &background setting
   else

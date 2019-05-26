@@ -84,7 +84,7 @@ augroup NightsenseThemeSet
    autocmd CursorMoved * execute 'if !exists("colors_name") |
          \ colorscheme simplifysimplify-light | endif'
 augroup END
-let colors_name = 'simplifysimplify-light'
+let colors_name = 'simplify-light'
 
 " highlighting function
 fun! <sid>h(x, gf, gb, cf, cb, a, s)

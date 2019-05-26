@@ -1,15 +1,13 @@
 scriptencoding utf-8
 let encoding='utf-8'
 set nocompatible
-syntax on " Turn on syntax highlighting
+syntax on
 filetype plugin on
 set hidden
 set ignorecase
 set history=100
 set updatetime=250
 set sessionoptions="blank,buffers,sesdir,folds,help,tabpages,winsize"
-
-set makeprg=clang++\ -std=c++17\ %\ &&\ ./a.out
 
 set wrap
 set number
@@ -26,7 +24,7 @@ set linebreak
 set completeopt-=preview
 set guicursor= 
 set mouse=a
-set cursorline
+" set cursorline
 " set cursorcolumn
 set noic
 
@@ -45,8 +43,7 @@ set wildcharm=<Tab>
 set foldmethod=syntax
 set nofoldenable
 
-" Font Noto Mono size 14 or Fira Code size 12
-" Install vim-plug with:
+" Install vim-plug:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " Install plugins with :PlugInstall
@@ -56,7 +53,6 @@ Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
-Plug 'benekastah/neomake'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
@@ -69,7 +65,7 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.vim'
-" Plug 'vimwiki/vimwiki'
+" Plug 'benekastah/neomake'
 call plug#end()
 
 " Vertical Split Thin Line
@@ -83,6 +79,11 @@ set background=light
 
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
+
+" Build
+nnoremap <F9> :make<CR>
+set makeprg=clang++\ -g\ -std=c++17\ %\ &&\ ./a.out
+" set makeprg=make\ -j4\ -C\ build/\ $*
 
 " Insert Date
 nnoremap <F5> "=strftime("%b %d, %Y")<CR>P
@@ -174,14 +175,6 @@ let g:NERDCompactSexyComs = 1
 " instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" Neomake Config - Clang Tidy
-nnoremap <Leader>nm :Neomake<CR>
-let g:neomake_cpp_enabled_makers =  ['clangtidy']
-let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
-            \-google-runtime-references,-llvm-header-guard,
-            \-fuchsia-default-arguments', '-extra-arg=-std=c++14',
-            \'-header-filter=.*']
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -194,3 +187,11 @@ endif
 
 " Auto Commenting turned off
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+
+" Neomake Config - Clang Tidy
+" nnoremap <Leader>nm :Neomake<CR>
+" let g:neomake_cpp_enabled_makers =  ['clangtidy']
+" let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
+"             \-google-runtime-references,-llvm-header-guard,
+"             \-fuchsia-default-arguments', '-extra-arg=-std=c++14',
+"             \'-header-filter=.*']

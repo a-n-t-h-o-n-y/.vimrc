@@ -9,7 +9,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name="luinnar"
+let g:colors_name="luinnar-dark"
 
 let save_cpo = &cpo
 set cpo&vim

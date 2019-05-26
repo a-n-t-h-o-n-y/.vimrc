@@ -7,7 +7,7 @@ if exists("syntax_on")
 	syntax reset
 endif
 
-let g:colors_name = "bushfire"
+let g:colors_name = "bushfire-dark"
 
 " Palette
 " #1c1c1c 234

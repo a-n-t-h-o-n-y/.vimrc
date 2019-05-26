@@ -6,7 +6,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let g:colors_name = "neuromancer"
+let g:colors_name = "neuromancer-dark"
 let s:colors = {
     \ "dark_blue": "#54C9FF",
     \ "turquoise": "#65F2F2",

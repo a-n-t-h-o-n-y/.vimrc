@@ -21,7 +21,7 @@ endif
 
 set background=dark
 
-let g:colors_name = 'yuejiu'
+let g:colors_name = 'yuejiu-dark'
 
 if &t_Co >= 256
 

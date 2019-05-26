@@ -16,7 +16,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "southernlights"
+let colors_name = "southernlights-dark"
 
 if &term =~ "xterm" || &term =~ "256" || $DISPLAY != ""
     set t_Co=256
