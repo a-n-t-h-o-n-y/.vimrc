@@ -13,7 +13,6 @@ set wrap
 set number
 set textwidth=80
 set colorcolumn=80
-let &colorcolumn=join(range(81,999),",")
 set formatoptions+=t
 set number relativenumber
 set ruler
@@ -24,9 +23,9 @@ set linebreak
 set completeopt-=preview
 set guicursor= 
 set mouse=a
+set noic
 " set cursorline
 " set cursorcolumn
-set noic
 
 set tabstop=4
 set softtabstop=4
