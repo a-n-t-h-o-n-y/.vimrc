@@ -1,10 +1,10 @@
-import os  
-import os.path  
-import fnmatch  
-import logging  
+import os
+import os.path
+import fnmatch
+import logging
 import ycm_core
 
-BASE_FLAGS = [  
+BASE_FLAGS = [
     '-Wall',
     '-Wextra',
     '-Werror',
@@ -19,7 +19,7 @@ BASE_FLAGS = [
     '-I/usr/include/'
 ]
 
-SOURCE_EXTENSIONS = [  
+SOURCE_EXTENSIONS = [
     '.cpp',
     '.cxx',
     '.cc',
@@ -28,18 +28,18 @@ SOURCE_EXTENSIONS = [
     '.mm'
 ]
 
-HEADER_EXTENSIONS = [  
+HEADER_EXTENSIONS = [
     '.h',
     '.hxx',
     '.hpp',
     '.hh'
 ]
 
-def IsHeaderFile(filename):  
+def IsHeaderFile(filename):
     extension = os.path.splitext(filename)[1]
     return extension in HEADER_EXTENSIONS
 
-def GetCompilationInfoForFile(database, filename):  
+def GetCompilationInfoForFile(database, filename):
     if IsHeaderFile(filename):
         basename = os.path.splitext(filename)[0]
         for extension in SOURCE_EXTENSIONS:
@@ -51,7 +51,7 @@ def GetCompilationInfoForFile(database, filename):
         return None
     return database.GetCompilationInfoForFile(filename)
 
-def FindNearest(path, target):  
+def FindNearest(path, target):
     candidate = os.path.join(path, target)
     if(os.path.isfile(candidate) or os.path.isdir(candidate)):
         logging.info("Found nearest " + target + " at " + candidate)
@@ -62,7 +62,7 @@ def FindNearest(path, target):
             raise RuntimeError("Could not find " + target);
         return FindNearest(parent, target)
 
-def MakeRelativePathsInFlagsAbsolute(flags, working_directory):  
+def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
     if not working_directory:
         return list(flags)
     new_flags = []
@@ -91,7 +91,7 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
     return new_flags
 
 
-def FlagsForClangComplete(root):  
+def FlagsForClangComplete(root):
     try:
         clang_complete_path = FindNearest(root, '.clang_complete')
         clang_complete_flags = open(clang_complete_path, 'r').read().splitlines()
@@ -99,7 +99,7 @@ def FlagsForClangComplete(root):
     except:
         return None
 
-def FlagsForInclude(root):  
+def FlagsForInclude(root):
     try:
         include_path = FindNearest(root, 'include')
         flags = []
@@ -111,7 +111,7 @@ def FlagsForInclude(root):
     except:
         return None
 
-def FlagsForCompilationDatabase(root, filename):  
+def FlagsForCompilationDatabase(root, filename):
     try:
         compilation_db_path = FindNearest(root, 'compile_commands.json')
         compilation_db_dir = os.path.dirname(compilation_db_path)
@@ -130,7 +130,7 @@ def FlagsForCompilationDatabase(root, filename):
     except:
         return None
 
-def FlagsForFile(filename):  
+def FlagsForFile(filename):
     root = os.path.realpath(filename);
     compilation_db_flags = FlagsForCompilationDatabase(root, filename)
     if compilation_db_flags:

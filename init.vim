@@ -16,7 +16,7 @@ set colorcolumn=80
 set formatoptions+=t
 set number relativenumber
 set ruler
-set scrolloff=6
+set scrolloff=2
 set lazyredraw
 set autoread
 set linebreak
@@ -48,7 +48,7 @@ set nofoldenable
 " Install plugins with :PlugInstall
 
 call plug#begin('~/.vim/plugged')
-Plug 'valloric/youcompleteme'
+" Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
@@ -64,6 +64,7 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'jceb/vim-orgmode'
 " Plug 'benekastah/neomake'
 call plug#end()
 
@@ -73,8 +74,12 @@ autocmd! ColorScheme * hi VertSplit gui=NONE   guibg=NONE   guifg=247
 
 " Terminal Colors
 set termguicolors
-colorscheme one-light
 set background=light
+" colorscheme cupertino-light
+colorscheme savanna-light
+
+nnoremap <Leader>d :color southernlights-dark<CR>
+nnoremap <Leader>f :color savanna-light<CR>
 
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
@@ -88,7 +93,7 @@ set makeprg=clang++\ -g\ -std=c++17\ %\ &&\ ./a.out
 nnoremap <F5> "=strftime("%b %d, %Y")<CR>P
 
 " Tagbar
-nmap <leader>tb :TagbarToggle<CR>
+nmap <Leader>tb :TagbarToggle<CR>
 
 " Window Movement
 nnoremap <c-h> <c-w>h
@@ -112,8 +117,8 @@ vnoremap <Leader>r :s/
 nnoremap <Leader>r :%s/
 
 " Open/Reload .vimrc
-nnoremap <leader>ev :edit $MYVIMRC<CR>
-nnoremap <leader>v :source $MYVIMRC<CR>
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>v :source $MYVIMRC<CR>
 
 " Invisible Characters
 set list
@@ -121,9 +126,10 @@ let &listchars = "tab:\u2192 ,extends:>,precedes:<,trail:\u00b7" " ,eol:\u00ac
 let &showbreak = '>'
 
 " YouCompleteMe Config
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+" let g:ycm_show_diagnostics_ui = 1
+" let g:ycm_server_python_interpreter = '/usr/bin/python3'
+
 " let g:ycm_add_preview_to_completeopt = 1
 " set completeopt=longest,menuone
 
@@ -158,6 +164,7 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 
 " Goyo/Limelight Config
+nnoremap <Leader>g :Goyo<CR>
 " let g:goyo_linenr=1
 let g:goyo_height = '100%'
 autocmd! User GoyoEnter Limelight
@@ -174,6 +181,9 @@ let g:NERDCompactSexyComs = 1
 " instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
+" vim-orgmode
+let g:org_indent = 1
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -186,6 +196,8 @@ endif
 
 " Auto Commenting turned off
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+
+autocmd FileType text setlocal foldmethod=indent
 
 " Neomake Config - Clang Tidy
 " nnoremap <Leader>nm :Neomake<CR>
