@@ -48,7 +48,7 @@ set nofoldenable
 " Install plugins with :PlugInstall
 
 call plug#begin('~/.vim/plugged')
-" Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'Chiel92/vim-autoformat'
@@ -126,9 +126,9 @@ let &listchars = "tab:\u2192 ,extends:>,precedes:<,trail:\u00b7" " ,eol:\u00ac
 let &showbreak = '>'
 
 " YouCompleteMe Config
-" let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-" let g:ycm_show_diagnostics_ui = 1
-" let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 " let g:ycm_add_preview_to_completeopt = 1
 " set completeopt=longest,menuone
