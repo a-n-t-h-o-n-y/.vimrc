@@ -431,7 +431,7 @@ hi CursorLineNr cterm=NONE
 
 let g:seoul256_current_fg = [s:dark_fg, s:light_fg][s:style_idx]
 let g:seoul256_current_bg = [s:dark_bg, s:light_bg][s:style_idx]
-let g:colors_name = 'seoul256'
+let g:colors_name = 'seoul-dark'
 if s:colors_name != g:colors_name || s:background == s:style
   let &background = s:style
 else

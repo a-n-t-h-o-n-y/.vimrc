@@ -65,6 +65,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'jceb/vim-orgmode'
+Plug 'dense-analysis/ale'
 " Plug 'benekastah/neomake'
 call plug#end()
 
@@ -75,7 +76,6 @@ autocmd! ColorScheme * hi VertSplit gui=NONE   guibg=NONE   guifg=247
 " Terminal Colors
 set termguicolors
 set background=light
-" colorscheme cupertino-light
 colorscheme savanna-light
 
 nnoremap <Leader>d :color southernlights-dark<CR>
@@ -95,11 +95,33 @@ nnoremap <F5> "=strftime("%b %d, %Y")<CR>P
 " Tagbar
 nmap <Leader>tb :TagbarToggle<CR>
 
+" Gutentags
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnsSpZ',
+      \ '--fields-C++=+{captures}',
+      \ '--fields-C++=+{properties}',
+      \ '--fields-C++=+{template}',
+      \ ]
+let g:gutentags_ctags_exclude = [
+      \ '*.git', 'tags*',
+      \ 'external', '*/tests/*',
+      \ 'build', 'out.*',
+      \ 'callgrind*', '.clang.d',
+      \ 'bin', 'example', 'vendor', 'docs',
+      \ '*.tmp', '*.cache',
+      \ '*-lock.json', '*.lock', '*.json', 'node_modules',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.txt', '*.md',
+      \ ]
+
+
 " Window Movement
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Save shortcut
 nnoremap <Leader>s :update<CR>
@@ -187,7 +209,7 @@ let g:org_indent = 1
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ external
   " Use ag in CtrlP for listing files. Remove -a to respect .gitignore
   let g:ctrlp_user_command = 'ag %s -l -nocolor -g ""'
   " ag is fast enough that CtrlP doesn't need to cache
@@ -199,10 +221,25 @@ autocmd FileType * setlocal formatoptions-=r formatoptions-=o
 
 autocmd FileType text setlocal foldmethod=indent
 
-" Neomake Config - Clang Tidy
-" nnoremap <Leader>nm :Neomake<CR>
-" let g:neomake_cpp_enabled_makers =  ['clangtidy']
-" let g:neomake_cpp_clangtidy_args = ['-checks=*,-llvm-include-order,
-"             \-google-runtime-references,-llvm-header-guard,
-"             \-fuchsia-default-arguments', '-extra-arg=-std=c++14',
-"             \'-header-filter=.*']
+" ALE linters
+let g:ale_linters={ 'c': ['clangtidy', 'cppcheck', 'gcc'], }
+let g:ale_c_parse_compile_commands=1
+let g:ale_cpp_clangtidy_checks =
+            \ ['bugprone-*', 'cert-*', 'cppcoreguidelines-*',
+            \ 'clang-analyzer-*', 'hicpp-*', 'misc-*', 'modernize-*',
+            \ 'performance-*', 'portability-*', 'readability-*',
+            \ '-readability-braces-around-statements',
+            \ '-hicpp-braces-around-statements',
+            \ '-readability-uppercase-literal-suffix',
+            \ '-hicpp-uppercase-literal-suffix',
+            \ '-cppcoreguidelines-non-private-member-variables-in-classes',
+            \ '-misc-non-private-member-variables-in-classes',
+            \]
+let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 0
+nnoremap <Leader>ct :ALELint<CR>
