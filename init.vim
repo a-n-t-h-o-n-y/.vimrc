@@ -50,8 +50,6 @@ set nofoldenable
 call plug#begin('~/.vim/plugged')
 Plug 'valloric/youcompleteme'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rhysd/vim-clang-format'
-Plug 'Chiel92/vim-autoformat'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
@@ -63,6 +61,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'milkypostman/vim-togglelist'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'dense-analysis/ale'
@@ -78,7 +78,7 @@ set termguicolors
 set background=light
 colorscheme savanna-light
 
-nnoremap <Leader>d :color southernlights-dark<CR>
+nnoremap <Leader>d :color ashes-dark<CR>
 nnoremap <Leader>f :color savanna-light<CR>
 
 " Exit insert mode on nvim terminal
@@ -165,18 +165,27 @@ let g:gitgutter_realtime = 1
 " Undotree Config
 nnoremap <Leader>u :UndotreeToggle<cr>
 let g:undotree_DiffAutoOpen = 0
-" autocmd VimEnter * UndotreeToggle
 
-" Clang Format Config
-let g:clang_format#code_style = 'Chromium'
-let g:clang_format#style_options = { "Standard" : "C++11" }
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" Clang-Format
+function FormatFile()
+  let l:lines="all"
+  if has('python3')
+    py3f /usr/share/clang/clang-format.py
+  elseif has('python')
+    pyf /usr/share/clang/clang-format.py
+  endif
+endfunction
 
-" Autoformat(Python)
-autocmd FileType python nnoremap <buffer><Leader>f :Autoformat<CR>
-autocmd FileType python vnoremap <buffer><Leader>f :Autoformat<CR>
-let g:formatter_yapf_style = 'chromium'
+function FormatSelection()
+  if has('python3')
+    py3f /usr/share/clang/clang-format.py
+  elseif has('python')
+    pyf /usr/share/clang/clang-format.py
+  endif
+endfunction
+
+autocmd FileType cpp nnoremap <Leader>cf :call FormatFile()<CR>
+autocmd FileType cpp vnoremap <Leader>cf :call FormatSelection()<CR>
 
 " Enhanced Highlighting
 let g:cpp_class_scope_highlight = 1
