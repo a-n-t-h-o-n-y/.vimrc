@@ -148,7 +148,6 @@ let &listchars = "tab:\u2192 ,extends:>,precedes:<,trail:\u00b7" " ,eol:\u00ac
 let &showbreak = '>'
 
 " YouCompleteMe Config
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
