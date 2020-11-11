@@ -66,6 +66,7 @@ Plug 'tpope/vim-repeat'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'dense-analysis/ale'
+Plug 'neovimhaskell/haskell-vim'
 " Plug 'benekastah/neomake'
 call plug#end()
 
@@ -76,10 +77,11 @@ autocmd! ColorScheme * hi VertSplit gui=NONE   guibg=NONE   guifg=247
 " Terminal Colors
 set termguicolors
 set background=light
-colorscheme savanna-light
+colorscheme snow
+let g:seoul256_background = 233
 
-nnoremap <Leader>d :color ashes-dark<CR>
-nnoremap <Leader>f :color savanna-light<CR>
+nnoremap <Leader>d :color seoul-dark<CR> :set background=dark<CR>
+nnoremap <Leader>f :color snow<CR> :set background=light<CR>
 
 " Exit insert mode on nvim terminal
 tnoremap jk <C-\><C-n>
