@@ -125,9 +125,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Save shortcut
-nnoremap <Leader>s :update<CR>
-
 " Esc shortcut
 inoremap jk <Esc>
 
@@ -185,8 +182,14 @@ function FormatSelection()
   endif
 endfunction
 
-autocmd FileType cpp nnoremap <Leader>cf :call FormatFile()<CR>
-autocmd FileType cpp vnoremap <Leader>cf :call FormatSelection()<CR>
+" Save shortcut
+nnoremap <Leader>s :update<CR>
+
+" clang-format and save on cpp/hpp files
+autocmd FileType cpp nnoremap <buffer> <Leader>s :call FormatFile() <bar> update<CR>
+
+" clang-format selection
+autocmd FileType cpp vnoremap <buffer> <Leader>cf :call FormatSelection()<CR>
 
 " Enhanced Highlighting
 let g:cpp_class_scope_highlight = 1
@@ -244,6 +247,7 @@ let g:ale_cpp_clangtidy_checks =
             \ '-hicpp-uppercase-literal-suffix',
             \ '-cppcoreguidelines-non-private-member-variables-in-classes',
             \ '-misc-non-private-member-variables-in-classes',
+            \ '-readability-redundant-access-specifiers',
             \]
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
