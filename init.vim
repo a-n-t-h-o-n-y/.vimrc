@@ -67,6 +67,7 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'dense-analysis/ale'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'https://codeberg.org/ngn/vim-apl.git'
 " Plug 'benekastah/neomake'
 call plug#end()
 
@@ -82,9 +83,6 @@ let g:seoul256_background = 233
 
 nnoremap <Leader>d :color seoul-dark<CR> :set background=dark<CR>
 nnoremap <Leader>f :color snow<CR> :set background=light<CR>
-
-" Exit insert mode on nvim terminal
-tnoremap jk <C-\><C-n>
 
 " Build
 nnoremap <F9> :make<CR>
@@ -257,3 +255,21 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_text_changed = 0
 nnoremap <Leader>ct :ALELint<CR>
+
+" Executes the current file, must be an executable file
+nnoremap <Leader>e :update <bar> !./%<CR>
+
+" Startup
+function MyInit()
+    terminal
+    UndotreeToggle
+    e .
+endfunction
+autocmd VimEnter * call MyInit()
+
+" Jump to Terminal
+let g:terminal_buffer = 2
+nnoremap <F12> :buffer <C-r>=g:terminal_buffer<CR> <bar> normal! i<CR>
+
+" Jump out of Terminal to alternate file
+tnoremap <F12> <C-\><C-n> <C-^>
